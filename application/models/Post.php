@@ -2,11 +2,11 @@
 /**
 **/
 
-class PostModel extends BaseModel
+class PostModel extends Medoo
 {
 	private $_table='ad_router';
 	
-	public function show(){
+	public function showall(){
 		$list=$this->select($this->_table,'*');
 		return $list;
 	}	

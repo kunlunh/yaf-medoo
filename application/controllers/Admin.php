@@ -14,10 +14,9 @@ class AdminController extends Controller_Abstract {
    public function postlistAction() {
 		Yaf\Dispatcher::getInstance()->disableView();
 		
-        $model = new PostModel();
+        $post = new PostModel();
 		
-		print_r($model->show());
-		//echo 123;
+		print_r($post->showall());
    }
    
    public function doAddpostAction() {

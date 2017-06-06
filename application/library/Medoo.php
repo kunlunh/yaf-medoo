@@ -34,10 +34,10 @@ class Medoo extends Bootstrap_Abstract
 
 	public function __construct($options = null)
 	{
-		//global $_db;//静态db
+		global $_db;//静态db
 		
 		$dbConfig = Yaf\Registry::get('config')->database->toarray();
-		//$dbConfig['option']=array(PDO::ATTR_CASE => PDO::CASE_NATURAL);
+		$dbConfig['option']=array(PDO::ATTR_CASE => PDO::CASE_NATURAL);
 		$options = $dbConfig;
 
 		try {
@@ -230,6 +230,16 @@ class Medoo extends Bootstrap_Abstract
 				$commands[] = "SET NAMES '" . $options[ 'charset' ] . "'";
 			}
 
+			if(!$_db){
+				$this->pdo = new PDO(
+					$dsn,
+					$options[ 'username' ],
+					$options[ 'password' ],
+					$this->option
+				);
+			}else{
+				$this->pdo=$_db;
+			}
 			$this->pdo = new PDO(
 				$dsn,
 				$options[ 'username' ],
