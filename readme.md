@@ -1,5 +1,5 @@
 # Yaf-medoo
-## make thing easy:
+## making things easy:
 Yaf-medoo is to combine an orm library ["medoo"](https://github.com/catfan/Medoo) with the very fast php framwork ["yaf"](https://github.com/laruence/yaf).
 
 Yaf-medoo 只是简单地集成medoo到yaf框架中。
