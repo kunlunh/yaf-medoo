@@ -14,9 +14,27 @@ class AdminController extends Controller_Abstract {
    public function postlistAction() {
 		Yaf\Dispatcher::getInstance()->disableView();
 		
-        $post = new PostModel();
+		$url = 'http://yaf.lan/admin/postlist';
 		
-		print_r($post->showall());
+		$pageno = $this->getRequest()->getQuery('page',1);
+        $post = new PostModel();
+		$count = $post->countall();
+		$offset = 3;
+		$pageview = page($url,$pageno,$count,$offset);
+	
+		$headcount = ($pageno-1)*$offset;
+		
+		$tailcount = ($pageno)*$offset;
+		
+		$cnd['LIMIT'] = array($headcount,$offset);
+
+		print_r($post->show($cnd));
+		
+		echo('</br>');
+		echo($pageview);
+		echo('</br>');
+		echo($post->last());
+		
    }
    
    public function doAddpostAction() {
